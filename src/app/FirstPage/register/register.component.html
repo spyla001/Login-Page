@@ -1,0 +1,54 @@
+<mat-card class="example-card">
+    
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+            
+    <form class="login-container" [formGroup] ="registerForm" >
+        <mat-form-field class="Login-form">
+            <input matInput placeholder="firstName" value=""  formControlName = "firstName">
+            <mat-error *ngIf="firstName.errors?.required">Password is Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="Login-form">
+            <input matInput placeholder="lastName" value=""  formControlName = "lastName">
+            <mat-error *ngIf="lastName.errors?.required">Password is Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="Login-form">
+            <input matInput placeholder="Username" value=""  formControlName= "username">
+            <mat-error *ngIf="username.errors?.required">Username is Required</mat-error>
+        </mat-form-field>
+
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput placeholder="Enter your email"  formControlName ="email">
+                <mat-error *ngIf="email.errors?.required">Email is Required</mat-error>
+            </mat-form-field>
+        </div>
+                  
+        <mat-form-field >
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"  formControlName = "password">
+            <mat-error *ngIf="password.errors?.required">Password is Required</mat-error>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <mat-form-field >
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"  formControlName = "confirmPassword">
+            <mat-error *ngIf="confirmPassword.errors?.required">Confirm password is Required and must Match</mat-error>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+                
+    </form>
+
+    <div *ngIf="errorMesg">{{errorMesg}}</div>
+    <mat-card-actions>
+            <button mat-button (click) = "onRegister()">Register</button>
+    </mat-card-actions>
+
+</mat-card>
