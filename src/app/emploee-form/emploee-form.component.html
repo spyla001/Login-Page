@@ -1,0 +1,188 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <mat-card>
+      <img mat-card-sm-image src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="">
+    </mat-card>
+    <a routerLink = "/employeedata" routerLinkActive="mat-accent" mat-stroked-button> employee details</a>
+    <a routerLink = "/employeeform" routerLinkActive="mat-accent" mat-stroked-button> employee form</a>
+  </mat-drawer>
+  <mat-drawer-content>
+<mat-horizontal-stepper labelPosition="bottom" #stepper>
+  <mat-step [stepControl]="personalDetails">
+    <form [formGroup]="personalDetails" >
+      <ng-template matStepLabel>Personal Details</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="First name" formControlName="firstName" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Last name" formControlName="lastName" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Visa Status" formControlName="visaStatus" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Marital Status</mat-label>
+        <mat-select formControlName = "maritalStatus">
+          <mat-option *ngFor="let status of marital" [value]="status">
+            {{status}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Personal Email" formControlName="personalEmail" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Contact Number" formControlName="contactNumber" required>
+      </mat-form-field>
+      <h4>Residency Address</h4>
+      <div formGroupName="address">
+      <mat-form-field>
+        <input matInput placeholder="Street1" formControlName="street1" required>
+      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Street2" formControlName="street2" required>
+        </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="city" formControlName="city" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="state" formControlName="state" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="zipcode" formControlName="zipcode" required>
+      </mat-form-field>
+      </div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="DOB" formControlName = "birthDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input type="tel" matInput placeholder="Social Security Number" formControlName="ssn">
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button	 matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="educationDetails" optional>
+    <form [formGroup]="educationDetails" >
+      <ng-template matStepLabel>Education and Compensation details</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Compensation" formControlName="compensation" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Annual Salary" formControlName="annualSalary" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Salary Mode" formControlName="salaryMode" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Benefits</mat-label>
+        <mat-select formControlName="benefits" multiple>
+          <mat-option *ngFor="let benefit of benefitsList" [value]="benefit">{{benefit}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="clientDetails" optional>
+    <form [formGroup]="clientDetails" >
+      <ng-template matStepLabel>Client Details</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Client Name" formControlName="clientName" required>
+      </mat-form-field>
+      <h4>Client Address</h4>
+      <div formGroupName="address">
+        <mat-form-field>
+          <input matInput placeholder="Street1" formControlName="street1" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Street2" formControlName="street2" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="city" formControlName="city" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="state" formControlName="state" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="zipcode" formControlName="zipcode" required>
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <input matInput placeholder="Reporting Manager" formControlName="reportingManager" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="RM Email" formControlName="rmEmail" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="RM Contact" formControlName="rmContact" required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="vendorDetails">
+    <form [formGroup]="vendorDetails" (ngSubmit)="form4()">
+      <ng-template matStepLabel>Vendor Details</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Vendor Name" formControlName="vendorName" required>
+      </mat-form-field>
+      <h4>Vendor Address</h4>
+      <div formGroupName="address">
+        <mat-form-field>
+          <input matInput placeholder="Street1" formControlName="street1" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Street2" formControlName="street2" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="city" formControlName="city" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="state" formControlName="state" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="zipcode" formControlName="zipcode" required>
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <input matInput placeholder="POC Name" formControlName="pocName" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="POC Email" formControlName="pocEmail" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="POC contact" formControlName="pocContact" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Billing Rate" type="number" class="example-right-align" formControlName="billingRate">
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>/hr.</span>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button	 matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Submit</ng-template>
+    Please Review your form and submit
+    <div>
+      <button mat-raised-button matStepperPrevious>Back</button>
+      <button mat-raised-button (click)="stepper.reset()">Reset</button>
+      <button mat-raised-button type="submit">Submit</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+  </mat-drawer-content>
+</mat-drawer-container>
+

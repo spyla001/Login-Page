@@ -13,9 +13,13 @@ import { PageNotFoundComponent } from './_helpers/page-not-found/page-not-found.
 import { UserDataService } from './services/user-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
-import { SidenavComponent } from './SecondPage/sidenav/sidenav.component';
-import { TabledataComponent } from './SecondPage/tabledata/tabledata.component';
 
+
+import { Material} from './shared/material.module';
+import { EmployeeDataComponent } from './employee-data/employee-data.component';
+import { EmploeeFormComponent } from './emploee-form/emploee-form.component';
+import { NavComponent } from './nav/nav.component';
+import {EmployeeService} from "./services/employee.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,8 +27,9 @@ import { TabledataComponent } from './SecondPage/tabledata/tabledata.component';
     RegisterComponent,
     DataComponent,
     PageNotFoundComponent,
-    SidenavComponent,
-    TabledataComponent
+    EmployeeDataComponent,
+    EmploeeFormComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +37,10 @@ import { TabledataComponent } from './SecondPage/tabledata/tabledata.component';
     BrowserAnimationsModule,
     AngularMaterialModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Material
   ],
-  providers: [ UserDataService, AuthService ],
+  providers: [ UserDataService, AuthService, EmployeeService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

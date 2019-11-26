@@ -3,14 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './FirstPage/login/login.component';
 import { RegisterComponent } from './FirstPage/register/register.component';
 import { PageNotFoundComponent } from './_helpers/page-not-found/page-not-found.component';
-import { TabledataComponent } from './SecondPage/tabledata/tabledata.component';
+import {EmployeeDataComponent} from './employee-data/employee-data.component';
+import {EmploeeFormComponent} from './emploee-form/emploee-form.component';
+
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'Login', pathMatch:'full'},
-  {path:'login',component: LoginComponent},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'tabledata', component: TabledataComponent}
+  {path: 'employeedata', component: EmployeeDataComponent},
+  {path: 'employeeform', component: EmploeeFormComponent},
   {path: '**', component: PageNotFoundComponent},
 ];
 

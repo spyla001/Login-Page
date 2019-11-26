@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SidenavComponent } from './sidenav.component';
+import { EmploeeFormComponent } from './emploee-form.component';
 
-describe('SidenavComponent', () => {
-  let component: SidenavComponent;
-  let fixture: ComponentFixture<SidenavComponent>;
+describe('EmploeeFormComponent', () => {
+  let component: EmploeeFormComponent;
+  let fixture: ComponentFixture<EmploeeFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidenavComponent ]
+      declarations: [ EmploeeFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SidenavComponent);
+    fixture = TestBed.createComponent(EmploeeFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
